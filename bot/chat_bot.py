@@ -1,5 +1,6 @@
 import os
 import sys
+import pricing.pricing as pr
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
@@ -17,6 +18,11 @@ def kill(update: Update, context: CallbackContext) -> None:
     updater.stop()
     sys.exit(0)
 
+def price(update: Update, context: CallbackContext) -> None:
+    """Stop the bot and exit the process when the command /kill is issued."""
+    update.message.reply_text(str(pr.get_advice('AAPL')))
+
+
 def main() -> None:
     """Start the bot."""
     # Fetch the token from environment variable
@@ -28,6 +34,7 @@ def main() -> None:
 
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("kill", kill))
+    dispatcher.add_handler(CommandHandler("price", price))
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
 
     updater.start_polling()
