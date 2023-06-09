@@ -19,8 +19,8 @@ def kill(update: Update, context: CallbackContext) -> None:
     sys.exit(0)
 
 def price(update: Update, context: CallbackContext) -> None:
-    """Stop the bot and exit the process when the command /kill is issued."""
-    update.message.reply_text(str(pr.get_advice('AAPL')))
+    """Price given product using yahoo prices"""
+    update.message.reply_text(pr.get_advice(context.args[0]))
 
 
 def main() -> None:
