@@ -28,7 +28,7 @@ The bot supports the following commands:
 Running the Bot
 Ensure that the environment variables SUPERNOVA_BOT_KEY and OPENAI_API_KEY are set in your environment. Then you can start the bot by running the chat_bot.py script:
 
-## bash
+## How to run
 ```
 python chat_bot.py
 ```
