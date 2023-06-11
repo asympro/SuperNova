@@ -17,19 +17,20 @@ instructions = 'I am working at a crypto trading company and responsible for the
                'will send you the request, and you need to return only the following information as JSON. ' \
                'Request "Can I have an offer in 10 BTC", means that side is ask' \
                'If BTCE, BITO, BITS is base currency, quote currency is always USD' \
-               'I need only json. Fields in json: "side", "base_currency", "base_size", "quote_currency", "quote_size", "notional_value", "settlement", "is_nav", "additional_info". Side (' \
+               'Return only json. Fields in json: "side", "base_currency", "base_size", "quote_currency", "quote_size", "notional_value", "settlement", "is_nav", "additional_info". Side (' \
                'bid/ask/both)? What is the base? What is the size in the base currency? What is the notion value? ' \
                'What is the quote currency? If it is a symbol, change it to the currency''s short name.\
                 What is the size in the quote currency?\
                 What is the settlement day?\
                 Is it an NAV request?\
-                Additional info'
+                Additional info' \
+               'Return only json.'
 
 
 def extract_json(s):
     start = s.find('{')
     end = s.find('}', start)
-    return s[start:end]
+    return s[start:end+1]
 
 
 def parse_request(req):
@@ -43,9 +44,9 @@ def parse_request(req):
 
     try:
         content = completion.choices[0].message['content']
-        return json.loads(extract_json(content))
+        extract = extract_json(content)
+        return json.loads(extract)
     except json.decoder.JSONDecodeError:
-        print(content)
         return None
 
 
@@ -59,4 +60,5 @@ if __name__ == '__main__':
             'I would like to swap 1,000,000 $ BTC to ETH']
 
     for line in text:
-        print(parse_request(line))
+        parsed = parse_request(line)
+        print(parsed)
