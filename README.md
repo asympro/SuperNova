@@ -47,8 +47,6 @@ The bot supports the following commands:
 
 __/start__: Initiates the bot.
 
-__/kill__: Shuts down the bot.
-
 __/rfq__: Processes an RFQ. The RFQ details are expected to be passed in as command arguments.
 
 __/trade__: Executes a trade. The trade instructions are expected to be passed in as command arguments.
