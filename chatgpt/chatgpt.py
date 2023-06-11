@@ -16,8 +16,12 @@ instructions = 'I am working at a crypto trading company and responsible for the
                'requested. The price could be requested against twap or vwap, this will be additional info. I ' \
                'will send you the request, and you need to return only the following information as JSON. ' \
                'Request "Can I have an offer in 10 BTC", means that side is ask' \
+               'Request "Id like to buy 20 BTC", means that side is ask' \
+               'If counterparty request is that it is want to buy something, means that side is ask' \
+               'If counterparty request is that it is want to sell something, means that side is bid' \
                'If BTCE, BITO, BITS is base currency, quote currency is always USD' \
-               'Return only json. Fields in json: "side", "base_currency", "base_size", "quote_currency", "quote_size", "notional_value", "settlement", "is_nav", "additional_info". Side (' \
+               'Return only json. Fields in json: "side", "base_currency", "base_size", "quote_currency", ' \
+               '"quote_size", "notional_value", "settlement", "is_nav", "additional_info". Side (' \
                'bid/ask/both)? What is the base? What is the size in the base currency? What is the notion value? ' \
                'What is the quote currency? If it is a symbol, change it to the currency''s short name.\
                 What is the size in the quote currency?\
@@ -41,6 +45,12 @@ def parse_request(req):
             {"role": "user", "content": req}
         ]
     )
+    # completion = openai.Completion.create(
+    #     model="davinci:ft-personal:super-nova-rfq-2023-06-11-10-49-04",
+    #     prompt=instructions,
+    #     max_tokens=1000,
+    #     temperature=0
+    # )
 
     try:
         content = completion.choices[0].message['content']
@@ -61,4 +71,4 @@ if __name__ == '__main__':
 
     for line in text:
         parsed = parse_request(line)
-        print(parsed)
+        print(parsed, line)
