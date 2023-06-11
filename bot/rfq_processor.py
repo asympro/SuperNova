@@ -50,6 +50,7 @@ def process_request(request, user):
             else:
                 side = 'sells'
             message = f"SuperNova {side} {size} {base_currency} for {price:.2f}"
+
     elif notional_value:
         if isinstance(notional_value,str):
             notional_value = notional_value.replace(',', '')
