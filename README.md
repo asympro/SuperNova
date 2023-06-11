@@ -45,10 +45,14 @@ __OPENAI_API_KEY__: Your OpenAI API key, which is used for the GPT-3.5-turbo mod
 ## Bot Commands
 The bot supports the following commands:
 
-/start: Initiates the bot.
-/kill: Shuts down the bot.
-/rfq: Processes an RFQ. The RFQ details are expected to be passed in as command arguments.
-/trade: Executes a trade. The trade instructions are expected to be passed in as command arguments.
+__/start__: Initiates the bot.
+
+__/kill__: Shuts down the bot.
+
+__/rfq__: Processes an RFQ. The RFQ details are expected to be passed in as command arguments.
+
+__/trade__: Executes a trade. The trade instructions are expected to be passed in as command arguments.
+
 Running the Bot
 Ensure that the environment variables SUPERNOVA_BOT_KEY and OPENAI_API_KEY are set in your environment. Then you can start the bot by running the chat_bot.py script:
 
