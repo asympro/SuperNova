@@ -36,12 +36,8 @@ python-telegram-bot: A Python wrapper for the Telegram Bot API.
 
 openai: Python client library for the OpenAI API.
 
-os: Provides a way of using operating system dependent functionality.
-
 json: Lightweight data interchange format inspired by JavaScript object literal syntax.
 
 functools: Includes higher-order functions and operations on callable objects.
-
-sys: Provides access to some variables used or maintained by the Python interpreter and to functions that interact strongly with the interpreter.
 
 collections: Implements specialized container datatypes providing alternatives to Python’s general purpose built-in containers.
