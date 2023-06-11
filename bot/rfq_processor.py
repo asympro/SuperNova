@@ -22,9 +22,21 @@ def process_request(request, user):
         if side == 'both':
             buy_price, _ = bc.get_spot_price(base_currency, 'Buy', size)
             sell_price, _ = bc.get_spot_price(base_currency, 'Sell', size)
+
+            # Skew prices by 1%
+            buy_price = buy_price * 1.01
+            sell_price = sell_price * 0.99
+
             message = f"The amount of money required to buy {size} {base_currency} on Binance's spot market is {buy_price} and to sell is {sell_price}"
         else:
             price, _ = bc.get_spot_price(base_currency, side, size)
+
+            # Skew price by 1%
+            if side.lower() == 'buy':
+                price = price * 1.01
+            else:  # For 'sell'
+                price = price * 0.99
+
             message = f"The amount of money required to {side} {size} {base_currency} on Binance's spot market is {price}"
     elif notional_value:
         spot_size, _ = bc.get_spot_size(base_currency, side, notional_value)
