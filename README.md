@@ -32,12 +32,13 @@ After initiating the bot with the /start command, you can send an RFQ such as "/
 To execute a trade, you can use the /trade command, for example "/trade mine" to execute a buy trade.
 
 ## Dependencies
-python-telegram-bot: A Python wrapper for the Telegram Bot API.
 
-openai: Python client library for the OpenAI API.
+__python-telegram-bot__: A Python wrapper for the Telegram Bot API.
 
-json: Lightweight data interchange format inspired by JavaScript object literal syntax.
+__openai__: Python client library for the OpenAI API.
 
-functools: Includes higher-order functions and operations on callable objects.
+__json__: Lightweight data interchange format inspired by JavaScript object literal syntax.
 
-collections: Implements specialized container datatypes providing alternatives to Python’s general purpose built-in containers.
+__functools__: Includes higher-order functions and operations on callable objects.
+
+__collections__: Implements specialized container datatypes providing alternatives to Python’s general purpose built-in containers.
