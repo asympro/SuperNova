@@ -4,14 +4,20 @@ This is a Python-based Telegram bot for processing cryptocurrency trading reques
 ## Modules
 The bot is organized into several modules:
 
-chat_bot.py: This is the main script for the bot. It handles the startup, and sets up the commands and responses for the bot. It also provides the main function to start the bot.
-positions.py: This module is responsible for managing the bot's current positions in various cryptocurrencies.
-rfq_processor.py: This module is responsible for processing RFQs. It communicates with the Binance connector and the chatgpt module to parse and understand the requests, and calculate prices.
-trade_processor.py: This module is responsible for executing trades based on the RFQs and user instructions.
-chatgpt.py: This module uses OpenAI's GPT-3.5-turbo model to parse and understand RFQs based on certain instructions.
-Environment Variables
-SUPERNOVA_BOT_KEY: Your Telegram bot token, which can be obtained by creating a new bot on Telegram via BotFather.
-OPENAI_API_KEY: Your OpenAI API key, which is used for the GPT-3.5-turbo model.
+__chat_bot.py__: This is the main script for the bot. It handles the startup, and sets up the commands and responses for the bot. It also provides the main function to start the bot.
+
+__positions.py__: This module is responsible for managing the bot's current positions in various cryptocurrencies.
+
+__rfq_processor.py__: This module is responsible for processing RFQs. It communicates with the Binance connector and the chatgpt module to parse and understand the requests, and calculate prices.
+
+__trade_processor.py__: This module is responsible for executing trades based on the RFQs and user instructions.
+
+__chatgpt.py__: This module uses OpenAI's GPT-3.5-turbo model to parse and understand RFQs based on certain instructions.
+
+## Environment Variables
+__SUPERNOVA_BOT_KEY__: Your Telegram bot token, which can be obtained by creating a new bot on Telegram via BotFather.
+
+__OPENAI_API_KEY__: Your OpenAI API key, which is used for the GPT-3.5-turbo model.
 ## Bot Commands
 The bot supports the following commands:
 
