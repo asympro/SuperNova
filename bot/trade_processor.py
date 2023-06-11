@@ -10,7 +10,7 @@ def make_buy(message):
     current_pos += base_size
     positions.set_position(base_curr, current_pos)
 
-    result += f'Bot buys {base_size} of {base_curr}'
+    result += f'SuperNova buys {base_size:.2f} of {base_curr}'
     if 'quote_size' in message['buy'] and message['buy']['quote_size']:
         quote_curr = message['buy']['quote_currency']
         quote_size = message['buy']['quote_size']
@@ -18,7 +18,7 @@ def make_buy(message):
         current_pos -= quote_size
         positions.set_position(quote_curr, current_pos)
 
-        result += f' and Bot sells {quote_size} of {quote_curr}'
+        result += f' and sells {quote_size:.2f} of {quote_curr}'
 
     return result
 
@@ -31,7 +31,7 @@ def make_sell(message):
     current_pos -= base_size
     positions.set_position(base_curr, current_pos)
 
-    result += f'Bot sells {base_size} of {base_curr}'
+    result += f'SuperNova sells {base_size} of {base_curr}'
     if 'quote_size' in message['sell'] and message['sell']['quote_size']:
         quote_curr = message['sell']['quote_currency']
         quote_size = message['sell']['quote_size']
@@ -39,12 +39,13 @@ def make_sell(message):
         current_pos += quote_size
         positions.set_position(quote_curr, current_pos)
 
-        result += f' and Bot buys {quote_size} of {quote_curr}'
+        result += f' for {quote_size} of {quote_curr}'
 
     return result
 
 
 def process_request(request, message):
+    request = ''.join(request)
     if request == 'mine':
         if 'sell' in message:
             message = make_sell(message)
@@ -59,7 +60,7 @@ def process_request(request, message):
 
 
 if __name__ == '__main__':
-    msg = process_request('your', {"buy": {
+    msg = process_request('yours', {"buy": {
         "base_currency": "BTC",
         "base_size": 100,
         "quote_currency": 'ETH',

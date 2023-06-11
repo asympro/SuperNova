@@ -10,7 +10,8 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
-    update.message.reply_text('Hi!')
+    update.message.reply_text('Welcome to SuperNova RFQ bot! Type your quote request after /rfq after you can use '
+                              '/trade mine or yours to buy and sell')
 
 
 def echo(update: Update, context: CallbackContext) -> None:
@@ -41,7 +42,7 @@ def trade(update: Update, context: CallbackContext) -> None:
     user = update.message.from_user
     args = ' '.join(context.args)
     args = args.lower()
-    if args != 'mine' or args != 'yours':
+    if args != 'mine' and args != 'yours':
         update.message.reply_text('type "mine" to buy or "yours" to sell')
     else:
         last_rfq = rfq_processor.get_last_rfq(user)

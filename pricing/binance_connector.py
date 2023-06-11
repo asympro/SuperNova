@@ -5,6 +5,14 @@ def __init__():
     pass
 
 
+def get_mid_price(base_currency):
+    r = requests.get(f'https://api.binance.com/api/v3/ticker/bookTicker?symbol={base_currency}USDT')
+    if r.status_code == 200:
+        j = r.json()
+        return (float(j["bidPrice"]) + float(j["askPrice"])) / 2
+    elif r.status_code == 404:
+        return None
+
 def get_hedge_size(base_currency, side, requested_price):
     r = requests.get(f'https://fapi.binance.com/fapi/v1/depth?symbol={base_currency}USDT&limit=1000')
     if r.status_code == 200:
@@ -83,7 +91,7 @@ def get_spot_price(base_currency, side, requested_size):
     r = requests.get(f'https://api.binance.com/api/v3/depth?symbol={base_currency}USDT&limit=5000')
     if r.status_code == 200:
         j = r.json()
-        book = j['bids'] if side == 'Sell' or side == 'bid' else j['asks']
+        book = j['bids'] if side.lower() == 'sell' or side.lower() == 'bid' else j['asks']
 
         total_spend = 0
         remain_size = float(requested_size)
@@ -105,6 +113,8 @@ def get_spot_price(base_currency, side, requested_size):
 
 
 if __name__ == '__main__':
+    print(get_mid_price('ETH'))
+
     print(get_spot_price('BTC', 'Sell', 150))
     print(get_spot_price('BTC', 'Buy', 150))
     print(get_hedge_price('BTC', 'Sell', 150))
