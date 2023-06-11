@@ -1,6 +1,7 @@
 import os
 import sys
 import rfq_processor
+import trade_processor
 
 from functools import reduce
 from telegram import Update
@@ -31,9 +32,21 @@ def convert(lst):
 
 def rfq(update: Update, context: CallbackContext) -> None:
     """Process the RFQ"""
-    message = rfq_processor.process_request(convert(context.args))
+    user = update.message.from_user
+    message = rfq_processor.process_request(convert(context.args), user)
     update.message.reply_text(message)
 
+def trade(update: Update, context: CallbackContext) -> None:
+    """Process the RFQ"""
+    user = update.message.from_user
+    args = ' '.join(context.args)
+    args = args.lower()
+    if args != 'mine' or args != 'yours':
+        update.message.reply_text('type "mine" to buy or "yours" to sell')
+    else:
+        last_rfq = rfq_processor.get_last_rfq(user)
+        message = trade_processor.process_request(context.args, last_rfq)
+        update.message.reply_text(message)
 
 def main() -> None:
     """Start the bot."""
@@ -47,6 +60,8 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("kill", kill))
     dispatcher.add_handler(CommandHandler("rfq", rfq))
+    dispatcher.add_handler(CommandHandler("trade", trade))
+
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
 
     updater.start_polling()

@@ -1,8 +1,16 @@
+from collections import defaultdict
+
 import chatgpt.chatgpt as chatgpt
 import pricing.binance_connector as bc
 
+last_rfq_by_user = defaultdict(lambda x: None)
 
-def process_request(request):
+
+def get_last_rfq(user):
+    return last_rfq_by_user[user]
+
+
+def process_request(request, user):
     parsed_request = chatgpt.parse_request(request)
 
     base_currency = parsed_request['base_currency']
@@ -24,4 +32,5 @@ def process_request(request):
     else:
         message = "Neither size nor notional_value is provided."
 
+    last_rfq_by_user[user] = message
     return message
