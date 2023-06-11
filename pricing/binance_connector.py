@@ -9,10 +9,10 @@ def get_hedge_size(base_currency, side, requested_price):
     r = requests.get(f'https://fapi.binance.com/fapi/v1/depth?symbol={base_currency}USDT&limit=1000')
     if r.status_code == 200:
         j = r.json()
-        book = j['bids'] if side == 'Sell' else j['asks']
+        book = j['bids'] if side == 'Sell' or side == 'bid' else j['asks']
 
         total_size = 0
-        remain_money = requested_price
+        remain_money = float(requested_price)
         for price, size in book:
             size = float(size)
             price = float(price)
@@ -34,10 +34,10 @@ def get_spot_size(base_currency, side, requested_price):
     r = requests.get(f'https://api.binance.com/api/v3/depth?symbol={base_currency}USDT&limit=5000')
     if r.status_code == 200:
         j = r.json()
-        book = j['bids'] if side == 'Sell' else j['asks']
+        book = j['bids'] if side == 'Sell' or side == 'bid' else j['asks']
 
         total_size = 0
-        remain_money = requested_price
+        remain_money = float(requested_price)
         for price, size in book:
             size = float(size)
             price = float(price)
@@ -59,10 +59,10 @@ def get_hedge_price(base_currency, side, requested_size):
     r = requests.get(f'https://fapi.binance.com/fapi/v1/depth?symbol={base_currency}USDT&limit=1000')
     if r.status_code == 200:
         j = r.json()
-        book = j['bids'] if side == 'Sell' else j['asks']
+        book = j['bids'] if side == 'Sell' or side == 'bid' else j['asks']
 
         total_spend = 0
-        remain_size = requested_size
+        remain_size = float(requested_size)
         for price, size in book:
             size = float(size)
             price = float(price)
@@ -83,10 +83,10 @@ def get_spot_price(base_currency, side, requested_size):
     r = requests.get(f'https://api.binance.com/api/v3/depth?symbol={base_currency}USDT&limit=5000')
     if r.status_code == 200:
         j = r.json()
-        book = j['bids'] if side == 'Sell' else j['asks']
+        book = j['bids'] if side == 'Sell' or side == 'bid' else j['asks']
 
         total_spend = 0
-        remain_size = requested_size
+        remain_size = float(requested_size)
         for price, size in book:
             size = float(size)
             price = float(price)
