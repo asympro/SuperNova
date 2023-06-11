@@ -30,12 +30,3 @@ python chat_bot.py
 After initiating the bot with the /start command, you can send an RFQ such as "/rfq 100 BTC". The bot will then provide a quote for buying or selling 100 BTC.
 
 To execute a trade, you can use the /trade command, for example "/trade mine" to execute a buy trade.
-
-## Dependencies
-python-telegram-bot: Python wrapper for the Telegram Bot API.
-openai: Python client library for the OpenAI API.
-os: Provides a way of using operating system dependent functionality.
-json: Lightweight data interchange format inspired by JavaScript object literal syntax.
-functools: Higher-order functions and operations on callable objects.
-sys: Provides access to some variables used or maintained by the Python interpreter and to functions that interact strongly with the interpreter.
-collections: Implements specialized container datatypes providing alternatives to Python’s general purpose built-in containers.
